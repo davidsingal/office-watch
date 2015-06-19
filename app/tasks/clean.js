@@ -21,12 +21,13 @@ function groupBy(array, f) {
   })
 }
 
-// Getting team and groups
+// Getting team and groups: name, email and _group is required
 var http = require('http');
 var query = 'SELECT cartodb_id AS id, name, email, _group' +
-  ' FROM vizz_team WHERE office=\'Madrid\' AND _group IS NOT NULL';
+  ' FROM ' + process.env.CARTODB_TABLENAME +
+  ' WHERE office=\'Madrid\' AND _group IS NOT NULL';
 var options = {
-  host: 'simbiotica.cartodb.com',
+  host: process.env.CARTODB_USERNAME + '.cartodb.com',
   path: '/api/v2/sql?q=' + encodeURIComponent(query)
 };
 var callback = function(response) {
