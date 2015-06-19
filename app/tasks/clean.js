@@ -1,10 +1,14 @@
 'use strict';
 
+require('dotenv').load();
+
+var fs = require('fs');
 var _ = require('underscore');
 var moment = require('moment');
 var http = require('http');
 var schedule = require('node-schedule');
 var mailer = require('../lib/mailer');
+var handlebars = require('handlebars');
 
 var weeksInYear = moment({ month: 11, day: 31 }).isoWeeks();
 var currentWeek = moment().week();
@@ -59,13 +63,19 @@ var callback = function(response) {
 
     // Turn of this week
     var currentTurn = turns[currentWeek];
-    var recipients = _.map(currentTurn, function(t) {
+    var recipients = _.map(team, function(t) {
       return { email: t.email, name: t.name, type: 'to' };
     });
+    var tplPath = process.cwd() + '/app/templates/clean.handlebars';
 
-    var app = schedule.scheduleJob('15 * * * *', function(){
-      console.log(recipients);
-      mailer('Cleaning time', null, recipients);
+    fs.readFile(tplPath, 'utf8', function(err, tpl) {
+      var mailTemplate = handlebars.compile(tpl);
+
+      // 00 10 * * 1
+      schedule.scheduleJob('00 10 * * 1', function() {
+        var message = { html: mailTemplate({ team: currentTurn }) };
+        mailer('Cleaning time', message, recipients);
+      });
     });
 
   });

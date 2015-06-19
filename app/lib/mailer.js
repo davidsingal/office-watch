@@ -19,11 +19,11 @@ module.exports = function(subject, message, recipients, cb) {
     'email': 'david.inga@vizzuality.com',
     'name': 'David Inga',
     'type': 'to'
-  }]
+  }];
 
   var messageConfig = {
     'html': message && message.html ? message.html : '<p>Example content</p>',
-    'text': message && message.text ? message.text : 'Example content',
+    // 'text': message && message.text ? message.text : 'Example content',
     'subject': subject || 'Example subject',
     'from_email': process.env.MANDRILL_FROM_EMAIL,
     'from_name': process.env.MANDRILL_FROM_NAME,
