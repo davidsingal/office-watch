@@ -1,0 +1,26 @@
+{
+  "name": "office-watch",
+  "version": "1.0.0",
+  "description": "Getting better office",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/davidsingal/office-watch.git"
+  },
+  "author": "David Inga <davidsingal@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidsingal/office-watch/issues"
+  },
+  "homepage": "https://github.com/davidsingal/office-watch#readme",
+  "dependencies": {
+    "dotenv": "^1.1.0",
+    "mandrill-api": "^1.0.45",
+    "moment": "^2.10.3",
+    "node-schedule": "^0.2.9",
+    "underscore": "^1.8.3"
+  }
+}
