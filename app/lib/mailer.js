@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').load();
+require('dotenv').load({ silent: true });
 
 var mandrill = require('mandrill-api/mandrill');
 var mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY);
@@ -13,13 +13,6 @@ var mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY);
  * @param  {Function} cb
  */
 module.exports = function(subject, message, recipients, cb) {
-
-  // debug
-  recipients = [{
-    'email': 'david.inga@vizzuality.com',
-    'name': 'David Inga',
-    'type': 'to'
-  }];
 
   var messageConfig = {
     'html': message && message.html ? message.html : '<p>Example content</p>',

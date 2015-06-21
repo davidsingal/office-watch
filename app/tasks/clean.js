@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').load();
+require('dotenv').load({ silent: true });
 
 var fs = require('fs');
 var _ = require('underscore');
@@ -71,8 +71,8 @@ var callback = function(response) {
     fs.readFile(tplPath, 'utf8', function(err, tpl) {
       var mailTemplate = handlebars.compile(tpl);
 
-      // 00 10 * * 1
-      schedule.scheduleJob('57 18 * * 0', function() {
+      // All mondays at 09:00
+      schedule.scheduleJob('00 09 * * 1', function() {
         var message = { html: mailTemplate({ team: currentTurn }) };
         mailer('Cleaning time', message, recipients);
       });
