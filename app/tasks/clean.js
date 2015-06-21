@@ -72,7 +72,7 @@ var callback = function(response) {
       var mailTemplate = handlebars.compile(tpl);
 
       // 00 10 * * 1
-      schedule.scheduleJob('55 * * * *', function() {
+      schedule.scheduleJob('55 18 * * 0', function() {
         var message = { html: mailTemplate({ team: currentTurn }) };
         mailer('Cleaning time', message, recipients);
       });
