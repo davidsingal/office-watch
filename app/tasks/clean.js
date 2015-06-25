@@ -71,8 +71,8 @@ var callback = function(response) {
     fs.readFile(tplPath, 'utf8', function(err, tpl) {
       var mailTemplate = handlebars.compile(tpl);
 
-      // All mondays at 09:00
-      schedule.scheduleJob('00 10 * * 1', function() {
+      // All mondays at 09:00 00 09 * * 1
+      schedule.scheduleJob('10 18 * * 4', function() {
         var message = { html: mailTemplate({ team: currentTurn }) };
         mailer('Cleaning time', message, recipients);
       });
