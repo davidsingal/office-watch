@@ -72,7 +72,7 @@ var callback = function(response) {
       var mailTemplate = handlebars.compile(tpl);
 
       // All mondays at 09:00 00 09 * * 1
-      schedule.scheduleJob('53 18 * * 4', function() {
+      schedule.scheduleJob('00 09 * * 1', function() {
         var message = { html: mailTemplate({ team: currentTurn }) };
         mailer('Cleaning time', message, recipients);
       });
