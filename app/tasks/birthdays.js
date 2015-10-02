@@ -66,7 +66,7 @@ var callback = function(response) {
       var mailTemplate = handlebars.compile(tpl);
 
       // All mondays at 09:00 00 09 * * 1
-      schedule.scheduleJob('40 10 * * *', function() {
+      schedule.scheduleJob('00 09 * * *', function() {
         var message = { html: mailTemplate({ team: birthdays }) };
         mailer('Happy birthday!', message, recipients);
         console.log('Mail sent!');
