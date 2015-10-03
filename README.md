@@ -10,11 +10,11 @@ Requirements:
 
 Install global libraries:
 
-  npm install -g grunt-cli
+    npm install -g grunt-cli
 
 Install project libraries:
 
-  npm install
+    npm install
 
 ## Usage
 
