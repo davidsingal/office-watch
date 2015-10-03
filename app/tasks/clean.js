@@ -22,7 +22,7 @@ function groupBy(array, f) {
   });
   return Object.keys(groups).map(function(group) {
     return groups[group];
-  })
+  });
 }
 
 // Getting team and groups: name, email and _group is required

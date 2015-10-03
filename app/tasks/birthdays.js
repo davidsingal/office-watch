@@ -10,21 +10,6 @@ var schedule = require('node-schedule');
 var mailer = require('../lib/mailer');
 var handlebars = require('handlebars');
 
-var weeksInYear = moment({ month: 11, day: 31 }).isoWeeks();
-var currentWeek = moment().week();
-
-function groupBy(array, f) {
-  var groups = {};
-  array.forEach(function(o) {
-    var group = JSON.stringify(f(o));
-    groups[group] = groups[group] || [];
-    groups[group].push(o);
-  });
-  return Object.keys(groups).map(function(group) {
-    return groups[group];
-  })
-}
-
 // Getting team and groups: name, email and _group is required
 var http = require('http');
 var query = 'SELECT cartodb_id AS id, name, email, birthday' +
