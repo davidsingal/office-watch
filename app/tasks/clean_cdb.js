@@ -31,7 +31,7 @@ var query = 'SELECT cartodb_id AS id, name, email, _group' +
   ' FROM cartodb_madrid_office' +
   ' WHERE office=\'Madrid\' AND _group IS NOT NULL';
 var options = {
-  host: 'team.cartodb.com',
+  host: 'cartofante.cartodb.com',
   path: '/api/v2/sql?q=' + encodeURIComponent(query)
 };
 var callback = function(response) {
