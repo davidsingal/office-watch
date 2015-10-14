@@ -70,18 +70,14 @@ var callback = function(response) {
 
     fs.readFile(tplPath, 'utf8', function(err, tpl) {
       var mailTemplate = handlebars.compile(tpl);
-
-      // All mondays at 09:00 00 09 * * 1
-      schedule.scheduleJob('00 09 * * 1', function() {
-        var message = { html: mailTemplate({ team: currentTurn }) };
-        mailer('Cleaning time', message, recipients);
-        console.log('Mail sent!');
-      });
+      var message = { html: mailTemplate({ team: currentTurn }) };
+      mailer('Cleaning time', message, recipients);
+      console.log('Mail sent!');
     });
-
   });
-
 };
 
-// send request to get groups
-http.request(options, callback).end();
+// All mondays at 09:00 00 09 * * 1
+schedule.scheduleJob('00 09 * * 1', function() {
+  http.request(options, callback).end();
+});

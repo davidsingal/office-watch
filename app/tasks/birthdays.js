@@ -18,6 +18,7 @@ var options = {
   host: process.env.CARTODB_USERNAME + '.cartodb.com',
   path: '/api/v2/sql?q=' + encodeURIComponent(query)
 };
+
 var callback = function(response) {
   var str = '';
 
@@ -43,7 +44,6 @@ var callback = function(response) {
     });
 
     if (birthdays.length) {
-
       var recipients = _.map(team, function(t) {
         return { email: t.email, name: t.name, type: 'to' };
       });
@@ -52,20 +52,17 @@ var callback = function(response) {
 
       fs.readFile(tplPath, 'utf8', function(err, tpl) {
         var mailTemplate = handlebars.compile(tpl);
-
-        // All mondays at 09:00 00 09 * * 1
-        schedule.scheduleJob('00 09 * * *', function() {
-          var message = { html: mailTemplate({ team: birthdays }) };
-          mailer('Happy birthday!', message, recipients);
-          console.log('Mail sent!');
-        });
+        var message = { html: mailTemplate({ team: birthdays }) };
+        mailer('Happy birthday!', message, recipients);
+        console.log('Mail sent!');
       });
-
     }
-
   });
-
 };
 
-// send request to get groups
-http.request(options, callback).end();
+// Schedule job: all mondays at 09:00 00 09 * * 1
+schedule.scheduleJob('00 09 * * *', function() {
+  // send request to get groups
+  http.request(options, callback).end();
+});
+
