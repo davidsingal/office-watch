@@ -10,9 +10,6 @@ var schedule = require('node-schedule');
 var mailer = require('../lib/mailer');
 var handlebars = require('handlebars');
 
-var weeksInYear = moment({ month: 11, day: 31 }).isoWeeks();
-var currentWeek = moment().week();
-
 function groupBy(array, f) {
   var groups = {};
   array.forEach(function(o) {
@@ -36,6 +33,8 @@ var options = {
 };
 var callback = function(response) {
   var str = '';
+  var weeksInYear = moment({ month: 11, day: 31 }).isoWeeks();
+  var currentWeek = moment().week();
 
   //another chunk of data has been recieved, so append it to `str`
   response.on('data', function (chunk) {
