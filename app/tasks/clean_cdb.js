@@ -28,7 +28,7 @@ function groupBy(array, f) {
 // Getting team and groups: name, email and _group is required
 var http = require('http');
 var query = 'SELECT cartodb_id AS id, name, email, _group' +
-  ' FROM cartodb_madrid_office' +
+  ' FROM madrid_office_limpieza' +
   ' WHERE office=\'Madrid\' AND _group IS NOT NULL';
 var options = {
   host: 'cartofante.cartodb.com',
