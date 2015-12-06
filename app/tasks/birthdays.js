@@ -60,7 +60,7 @@ var callback = function(response) {
   });
 };
 
-// Schedule job: all mondays at 09:00 00 09 * * 1
+// Schedule job: all days at 09:00 00 09 * *
 schedule.scheduleJob('00 09 * * *', function() {
   // send request to get groups
   http.request(options, callback).end();
