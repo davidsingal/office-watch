@@ -6,8 +6,8 @@ var fs = require('fs');
 var _ = require('underscore');
 var moment = require('moment');
 var http = require('http');
-var schedule = require('node-schedule');
-var mailer = require('../lib/mailer');
+// var schedule = require('node-schedule');
+var mailer = require('../lib/sparkpost_mailer');
 var handlebars = require('handlebars');
 
 function groupBy(array, f) {
@@ -79,6 +79,6 @@ var callback = function(response) {
 };
 
 // All mondays at 09:00 00 09 * * 1
-schedule.scheduleJob('00 09 * * 1', function() {
+// schedule.scheduleJob('00 09 * * 1', function() {
   http.request(options, callback).end();
-});
+// });
