@@ -21,7 +21,7 @@ module.exports = function(subject, message, recipients, cb) {
         subject: subject || 'Example subject',
         html: message && message.html ? message.html : '<p>Example content</p>',
       },
-      recipients: [{address: 'david.inga@vizzuality.com'}]
+      recipients: recipients
     }
   }, function(err, res) {
     if (err) {

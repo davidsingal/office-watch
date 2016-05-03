@@ -63,7 +63,7 @@ var callback = function(response) {
     // Turn of this week
     var currentTurn = turns[currentWeek];
     var recipients = _.map(team, function(t) {
-      return { email: t.email, name: t.name, type: 'to' };
+      return { address: t.email, name: t.name };
     });
     var tplPath = process.cwd() + '/app/templates/clean.handlebars';
 
@@ -71,7 +71,7 @@ var callback = function(response) {
       var mailTemplate = handlebars.compile(tpl);
       var message = { html: mailTemplate({ team: currentTurn }) };
       mailer('Cleaning time', message, recipients);
-      console.log('Mail sent!');
+      // console.log('Mail sent!');
     });
 
   });
