@@ -31,7 +31,7 @@ module.exports = function(subject, message, recipients, cb) {
         cb(null, res);
       }
     } else {
-      console.log('Woohoo! You just sent your first mailing!');
+      console.log('Woohoo! You just sent your mailing!');
       if (cb && typeof cb === 'function') {
         cb(res);
       }

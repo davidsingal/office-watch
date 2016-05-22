@@ -2,4 +2,4 @@
 
 require('./tasks/clean');
 require('./tasks/clean_cdb');
-// require('./tasks/birthdays');
+require('./tasks/birthdays');

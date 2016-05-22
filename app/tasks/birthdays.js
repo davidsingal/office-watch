@@ -7,7 +7,7 @@ var _ = require('underscore');
 var moment = require('moment');
 var http = require('http');
 var schedule = require('node-schedule');
-var mailer = require('../lib/mailer');
+var mailer = require('../lib/sparkpost_mailer');
 var handlebars = require('handlebars');
 
 // Getting team and groups: name, email and _group is required
@@ -49,7 +49,7 @@ var callback = function(response) {
 
     if (birthdays.length) {
       var recipients = _.map(team, function(t) {
-        return { email: t.email, name: t.name, type: 'to' };
+        return { address: t.email, name: t.name, type: 'to' };
       });
 
       var tplPath = process.cwd() + '/app/templates/birthdays.handlebars';
@@ -58,15 +58,13 @@ var callback = function(response) {
         var mailTemplate = handlebars.compile(tpl);
         var message = { html: mailTemplate({ team: birthdays }) };
         mailer('Happy birthday!', message, recipients);
-        console.log('Mail sent!');
       });
     }
   });
 };
 
 // Schedule job: all days at 09:00 00 09 * *
-schedule.scheduleJob('00 09 * * *', function() {
+// schedule.scheduleJob('00 09 * * *', function() {
   // send request to get groups
-  http.request(options, callback).end();
-});
-
+http.request(options, callback).end();
+// });
