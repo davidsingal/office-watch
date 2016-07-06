@@ -41,7 +41,7 @@ var callback = function(response) {
         t.age = today.year() - birth.year();
         if (t.age >= 35) {
           t.age = t.age - 10;
-          t.message = 'NOTE: The age showed could not to be the real age.';
+          t.message = 'NOTE: The age shown is approximate.';
         }
         birthdays.push(t);
       }

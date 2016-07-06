@@ -165,10 +165,13 @@
                 <p>Birthdays today:</p>
                 <ul>
                   {{#each team}}
-                    <li>{{name}} - {{age}} years</li>
+                    <li>
+                      <p>{{name}} - {{age}} years</p>
+                      <small>{{message}}</small>
+                    </li>
                   {{/each}}
                 </ul>
-                {{message}}
+
               </td>
             </tr>
           </table>
