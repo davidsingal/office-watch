@@ -26,10 +26,10 @@ module.exports = function(people) {
     }
   }
 
-  if (!result.length) {
-    logger('info', 'There aren\'t birthdays today.');
-  } else {
+  if (result.length) {
     logger('info', 'There are birthdays today!!! :)');
+  } else {
+    logger('info', 'There aren\'t birthdays today.');
   }
 
   return result;

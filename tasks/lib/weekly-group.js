@@ -1,16 +1,16 @@
 'use strict';
 
-const logger = require('./logger');
 const moment = require('moment');
+const logger = require('./logger');
 
 function groupBy(array, f) {
-  var groups = {};
-  array.forEach(function(o) {
-    var group = JSON.stringify(f(o));
+  const groups = {};
+  array.forEach(o => {
+    const group = JSON.stringify(f(o));
     groups[group] = groups[group] || [];
     groups[group].push(o);
   });
-  return Object.keys(groups).map(function(group) {
+  return Object.keys(groups).map(group => {
     return groups[group];
   });
 }
@@ -26,9 +26,9 @@ module.exports = function(people) {
     return logger('error', '"people" params is undefined or empty.');
   }
 
-  const weeksInYear = moment({ month: 11, day: 31 }).isoWeeks();
+  const weeksInYear = moment({month: 11, day: 31}).isoWeeks();
   const currentWeek = moment().week();
-  const groups = groupBy(people, function(g) {
+  const groups = groupBy(people, g => {
     return g._group;
   });
   const groupsLen = groups.length;
@@ -38,7 +38,7 @@ module.exports = function(people) {
 
   // Assign a group to each week of year
   for (let w = weeksInYear; w--;) {
-    c = c + 1;
+    c++;
     if (c === groupsLen) {
       c = 0;
     }
