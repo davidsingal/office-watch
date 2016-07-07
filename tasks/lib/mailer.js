@@ -1,10 +1,10 @@
 'use strict';
 
-import dotenv from 'dotenv';
-import SparkPost from 'sparkpost';
-
 // At beginning, load environment variables
-dotenv.load({silent: true});
+require('dotenv').load({silent: true});
+
+const SparkPost = require('sparkpost');
+const logger = require('./logger');
 
 const sp = new SparkPost(process.env.SPARKPOST_API_KEY);
 
@@ -20,28 +20,27 @@ const sp = new SparkPost(process.env.SPARKPOST_API_KEY);
  *   recipients: [{address: 'people@example.com'}]
  * }
  */
-export default function(options, cb) {
+module.exports = function(options, cb) {
   sp.transmissions.send({
     transmissionBody: {
       content: {
         from: options.from,
-        subject: options.subject || 'Example subject',
-        html: options.content || '<p>Example content</p>'
+        subject: options.subject,
+        html: options.content
       },
       recipients: options.recipients
     }
   }, err => {
     if (err) {
-      console.log('Whoops! Something went wrong');
-      console.log(err);
+      logger('error', err);
       if (cb && typeof cb === 'function') {
         cb(err);
       }
     } else {
-      console.log('Woohoo! You just sent your mailing!');
+      logger('info', 'You\'ve sent your mailing.');
       if (cb && typeof cb === 'function') {
         cb();
       }
     }
   });
-}
+};
