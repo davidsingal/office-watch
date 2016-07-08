@@ -1,8 +1,5 @@
 'use strict';
 
-// At beginning, load environment variables
-require('dotenv').load({silent: true});
-
 const SparkPost = require('sparkpost');
 const logger = require('./logger');
 

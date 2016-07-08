@@ -8,9 +8,6 @@ const mailer = require('./lib/mailer');
 const logger = require('./lib/logger');
 const currentGroup = require('./lib/weekly-group');
 
-// At beginning, load environment variables
-require('dotenv').load({silent: true});
-
 const tplPath = path.join(process.cwd(), '/tasks/templates/clean.handlebars');
 const query = `SELECT cartodb_id AS id, name, email AS address, _group
   FROM ${process.env.VIZZUALITY_TABLENAME}
