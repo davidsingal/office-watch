@@ -8,12 +8,12 @@ const mailer = require('./lib/mailer');
 const logger = require('./lib/logger');
 const birthdays = require('./lib/birthdays');
 
-const tplPath = path.join(process.cwd(), '/tasks/templates/birthdays.handlebars');
-const query = `SELECT cartodb_id AS id, name, email AS address, birthday
-  FROM ${process.env.VIZZUALITY_TABLENAME} WHERE birthday IS NOL NULL`;
+const tplPath = './templates/birthdays.handlebars';
+const query = 'SELECT cartodb_id AS id, name, email AS address, birthday ' +
+  'FROM ' + process.env.VIZZUALITY_TABLENAME + ' WHERE birthday IS NOT NULL';
 const requestConfig = {
-  host: `${process.env.VIZZUALITY_USERNAME}.cartodb.com`,
-  path: `/api/v2/sql?q=${encodeURIComponent(query)}`
+  host: process.env.VIZZUALITY_USERNAME + '.cartodb.com',
+  path: '/api/v2/sql?q=' + encodeURIComponent(query)
 };
 
 logger('info', 'Runinng birthday task...');
