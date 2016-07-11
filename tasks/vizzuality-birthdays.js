@@ -8,7 +8,7 @@ const mailer = require('./lib/mailer');
 const logger = require('./lib/logger');
 const birthdays = require('./lib/birthdays');
 
-const tplPath = './templates/birthdays.handlebars';
+const tplPath = path.join(__dirname, 'templates/birthdays.handlebars');
 const query = 'SELECT cartodb_id AS id, name, email AS address, birthday ' +
   'FROM ' + process.env.VIZZUALITY_TABLENAME + ' WHERE birthday IS NOT NULL';
 const requestConfig = {
