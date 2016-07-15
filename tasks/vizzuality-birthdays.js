@@ -42,7 +42,7 @@ function callback(response) {
           from: process.env.SPARKPOST_FROM_EMAIL,
           subject: 'Happy birthday!',
           content: mailTemplate({team: result}),
-          recipients: birthdays
+          recipients: people
         });
       });
     }
