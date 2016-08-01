@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/davidsingal/office-watch#readme",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "handlebars": "^4.0.5",
     "moment": "^2.14.1",
     "sparkpost": "^1.3.5",
