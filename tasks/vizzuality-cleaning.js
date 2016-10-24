@@ -11,7 +11,7 @@ const currentGroup = require('./lib/weekly-group');
 const tplPath = path.join(__dirname, 'templates/clean.handlebars');
 const query = `SELECT cartodb_id AS id, name, email AS address, _group
   FROM ${process.env.VIZZUALITY_TABLENAME}
-  WHERE clean_active IS NOT NULL AND _group IS NOT NULL AND office='Madrid'`;
+  WHERE clean_active IS TRUE AND _group IS NOT NULL AND office='Madrid'`;
 const requestConfig = {
   host: `${process.env.VIZZUALITY_USERNAME}.cartodb.com`,
   path: `/api/v2/sql?q=${encodeURIComponent(query)}`
